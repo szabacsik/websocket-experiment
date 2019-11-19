@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  container:
+    image: szabacsik/ubuntu_nginx_php-fpm_phalcon:latest
+    container_name: container
+    hostname: container
+    environment:
+      - HOSTNAME=container
+    ports:
+      - 80:80
+      - 8080:8080
+      - 9001:9001
+    networks:
+      - backendNetwork
+    volumes:
+      - /home/worker/attached/container:/home/worker/volume
+      - type: bind
+        source: ./nginx-container.conf
+        target: /etc/nginx/sites-available/nginx.conf
+    restart: "always"
+networks:
+  backendNetwork:
+    name: backend_network
