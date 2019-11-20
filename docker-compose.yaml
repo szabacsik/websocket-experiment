@@ -17,6 +17,9 @@ services:
       - type: bind
         source: ./nginx-container.conf
         target: /etc/nginx/sites-available/nginx.conf
+      - type: bind
+        source: ./supervisord.conf
+        target: /etc/supervisor/conf.d/supervisord.conf
     restart: "always"
 networks:
   backendNetwork:
